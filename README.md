@@ -53,7 +53,7 @@ All servers running on the RPi, runs in Docker images & containers, all publishe
 
 #### The json flatfile with the leg definintions
 
-Example json file in directory that defined the sprinkling times:
+Example json file on ``~/data/sprinklerlegs.cnf` directory that defined the sprinkling times:
 
 ```
 {"legday":
