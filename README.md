@@ -53,4 +53,4 @@ Picture 4: Solonoid controller Inside view 1
 Picture 5: Solonoid controller Inside view 2
 
 ![](images/Sprinkler_controllerB_2c-Inside.jpg)
-Picture 5: Solonoid controller Inside view 3
+Picture 6: Solonoid controller Inside view 3
