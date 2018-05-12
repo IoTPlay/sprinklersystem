@@ -97,11 +97,11 @@ See picture 1 - left enclosure.
 - 8-way steel round plug: From controller A via CAT-5.
 - 220v in.
 - 8-way green plastic plug: Relays, from left:
-  - Pin 1: Relay 1 - leg 1, (to gpio 00 on controller A)
-  - Pin 2: Relay 2 - leg 2, (to gpio 02 on controller A)
-  - Pin 3: Relay 3 - leg 3, (to gpio 04 on controller A)
-  - Pin 4: Relay 4 - leg 4, (to gpio 05 on controller A)
-  - Pin 5: Relay 5 - pump,  (to gpio 13 on controller A)
+  - Pin 1: Relay 1 - leg 1, (to gpio15 on controller A)
+  - Pin 2: Relay 2 - leg 2, (to gpio00 on controller A)
+  - Pin 3: Relay 3 - leg 3, (to gpio05 on controller A)
+  - Pin 4: Relay 4 - leg 4, (to gpio04 on controller A)
+  - Pin 5: Relay 5 - pump,  (to gpio02 on controller A)
   - Pin 7: Ground
   - Pin 8: VCC 5v
 
