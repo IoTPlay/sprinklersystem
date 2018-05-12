@@ -76,6 +76,35 @@ Row 1 explained: sprinkle leg 1, morning, for 15 minutes, then rest 40 minutes f
 
 See screens 4-6 below, for the Devices. Also see the Rules, which mqtt messages trigger in the file [ESP8266_rules](ESP8266_rules.txt).
 
+#### Electronics & Solenoids
+
+The `sprinkler controller` is housed in 2 enclosures, see pictures 1 to 6 below. The 2 housings are:
+- Housing A) `ESP8266 controller` - with an 8-way plug with all control signals to -
+- Housing B) `Solenoids` for the sprinkler legs, and the pump.
+
+##### Controller A: ESP8266 Controller
+
+It has 3 plugs at the bottom, see picture 1, right enclosure:
+- 4-way round steel plug: For the 1" water [flow meter](https://www.ebay.com/itm/G1-1-60L-min-Water-Flow-Sensor-Switch-Hall-Effect-Sensor-Flow-Meter-Sensor/171797057803?hash=item27ffe7110b:g:4WoAAOSw3xJVXXwZ) from the borehole pump.
+- 8-way round steel plug: Control cable `to Controller B` - using CAT-5 cable
+- 3-way audio plug: To an `DHT22` temp & humidity sensor.
+- 220v in (on top side) see picture 2.
+
+
+###### Controller B: The Solenoids
+
+See picture 1 - left enclosure.
+- 8-way steel round plug: From controller A via CAT-5.
+- 220v in.
+- 8-way green plastic plug: Relays, from left:
+  - Pin 1: Relay 1 - leg 1, (to gpio 00 on controller A)
+  - Pin 2: Relay 2 - leg 2, (to gpio 02 on controller A)
+  - Pin 3: Relay 3 - leg 3, (to gpio 04 on controller A)
+  - Pin 4: Relay 4 - leg 4, (to gpio 05 on controller A)
+  - Pin 5: Relay 5 - pump,  (to gpio 13 on controller A)
+  - Pin 7: Ground
+  - Pin 8: VCC 5v
+
 
 ## Todo
 The project is not yet completed. Further requirements includes:
@@ -84,8 +113,6 @@ The project is not yet completed. Further requirements includes:
 - Amount of water to drop based on levels of Soil moisture, using for instance [Tindie's SoilWatch10](https://www.tindie.com/products/pinotech/soilwatch-10-soil-moisture-sensor/?pt=ac_prod_search).
 
 - Change starting time of the cycle with the season's changes.
-
-### Notes on Implementation
 
 
 
@@ -116,7 +143,7 @@ Screen 6: ESPEasy config screeen 3
 ### The Sprinkler Controller
 
 ![](images/Sprinkler_controller_AandB.jpg)
-Picture 1: Left - The Solenoids, Right - the ESP controller
+Picture 1: Left - The (controller B) Solenoids, Right - (controller A) the ESP controller
 
 ![](images/Sprinkler_controllerA_1-Inside.jpg)
 Picture 2: ESP controller Inside
