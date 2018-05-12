@@ -73,8 +73,20 @@ Example json file on `~/data/sprinklerlegs.cnf` directory that defined the sprin
 Row 1 explained: sprinkle leg 1, morning, for 15 minutes, then rest 40 minutes for the borehole to fill-up, and sprinkle all days except Friday (our grass is cut on this day).
 
 #### The configuration of the ESPEasy config
+Some of the configs:
 
-See screens 4-6 below, for the Devices. Also see the Rules, which mqtt messages trigger in the file [ESP8266_rules](ESP8266_rules.txt).
+##### ESP configs
+
+- See screens 4-6 below, for the Devices.
+- Also see the Rules, which mqtt messages trigger in the file [ESP8266_rules](ESP8266_rules.txt).
+
+##### Node-RED config  
+The most complex part of the auto-switching - per rules from the json file, are in the NR section below:
+
+![The auto-switching flow](images/NR_SwitchingLogicFlow.png)
+
+Import the json file [NR_autoswitching.json](NR_autoswitching.json) into Node-RED to get these flows into Node-RED.  
+
 
 #### Electronics & Solenoids
 
