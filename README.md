@@ -7,11 +7,15 @@ A 4 x leg sprinkler system, and borehole pump switching system with RPi &amp; No
 
 ## Systems Components Used
 
-- Node-RED on a Raspberry Pi
-- Mosquitto as MQTT server running on the same RPi
+- [Node-RED](https://nodered.org) on a Raspberry Pi
+- [Mosquitto](https://mosquitto.org) as MQTT server running on the same RPi
 - The solonoids is controlled with an ESP8266, on a wifi network, controlled by mqtt from Node-Red.
-- We use ESPEasy on the Node-RED.
+- We use ESPEasy on the Node-RED, from the community  [letscontrolit.com](https://www.letscontrolit.com/wiki/index.php/ESPEasy).
 - All servers running on the RPi, runs in Docker images & containers.
+
+## Description of the Requirements
+todo.
+
 
 ### The Node-RED Dashboard
 ![Dashboard 1](images/Node-RED_Dashboard_Screen1.png)   
