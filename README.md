@@ -51,9 +51,12 @@ All servers running on the RPi, runs in Docker images & containers, all publishe
 
 ### Notes on Solution Components
 
-#### The json flatfile with the leg definintions
+#### The json flatfile with the leg definitions
 
-Example json file on `~/data/sprinklerlegs.cnf` directory that defined the sprinkling times:
+Two files defines the function: `iotp_sprinklerlegs` and `iotp_settings`. Examples below:
+
+1. `iotp_sprinklerlegs.ncf`
+Example json file on `~/data/iotp_sprinklerlegs.cnf` directory that defined the sprinkling times:
 
 ```
 {"legday":
@@ -71,6 +74,12 @@ Example json file on `~/data/sprinklerlegs.cnf` directory that defined the sprin
 ```
 
 Row 1 explained: sprinkle leg 1, morning, for 15 minutes, then rest 40 minutes for the borehole to fill-up, and sprinkle all days except Friday (our grass is cut on this day).
+
+2. `iotp_settings.cnf`:
+
+```
+{"sprinkler_auto":1,"pool_auto":0,"sprinkler_A_start":"05:15","sprinkler_B_start":"18:00","geyser_auto":1}
+```
 
 #### The configuration of the ESPEasy config
 Some of the configs:
