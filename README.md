@@ -41,7 +41,7 @@ A Web front-end to work on a phone, where the sprinkler system can be:
 Building blocks are:
 - [Node-RED](https://nodered.org) on a Raspberry Pi
 - [Mosquitto](https://mosquitto.org) as MQTT server running on the same RPi
-- The solonoids is controlled with an ESP8266, on a wifi network, using `mqtt` from Node-Red.
+- The sprinkler solenoids is controlled with an ESP8266, on a wifi network, using `mqtt` from Node-Red.
 - We use ESPEasy on the Node-RED, from the community  [letscontrolit.com](https://www.letscontrolit.com/wiki/index.php/ESPEasy).  
 - A MariaDB instance to track stats of sprinkling.
 
@@ -171,13 +171,13 @@ Picture 1: Left - The (controller B) Solenoids, Right - (controller A) the ESP c
 Picture 2: ESP controller Inside  
 
 ![](images/Sprinkler_controllerB_2a-Inside.jpg)  
-Picture 3: Solonoid controller Inside view 1  
+Picture 3: Relay controller Inside view 1  
 
 ![](images/Sprinkler_controllerB_2a-Inside.jpg)  
-Picture 4: Solonoid controller Inside view 1  
+Picture 4: Relay controller Inside view 1  
 
 ![](images/Sprinkler_controllerB_2b-Inside.jpg)  
-Picture 5: Solonoid controller Inside view 2  
+Picture 5: Relay controller Inside view 2  
 
 ![](images/Sprinkler_controllerB_2c-Inside.jpg)  
-Picture 6: Solonoid controller Inside view 3  
+Picture 6: Relay controller Inside view 3  
