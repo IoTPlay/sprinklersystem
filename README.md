@@ -84,18 +84,20 @@ Row 1 explained: sprinkle leg 1, morning, for 15 minutes, then rest 40 minutes f
 #### The configuration of the ESPEasy config
 Some of the configs:
 
-##### ESP configs
-
 - See screens 4-6 below, for the Devices.
 - Also see the Rules, which mqtt messages trigger in the file [ESP8266_rules](ESP8266_rules.txt).
 
-##### Node-RED config  
+#### Node-RED config  
+
+##### Auto-Switching:
 The most complex part of the auto-switching - per rules from the json file, are in the NR section below:
 
 ![The auto-switching flow](images/NR_SwitchingLogicFlow.png)
 
-Import the json file [NR_autoswitching.json](NR_autoswitching.json) into Node-RED to get these flows into Node-RED.  
+Import the json file [NR_autoswitching.json](flows/NR_autoswitching.json) into Node-RED to get these flows into Node-RED.  
 
+##### Leg Settings
+The persistent settings of the legs, which should sprinkle on what day, rest for how many minutes before the next leg, and how long the leg must go for, is persisted in a file ` /data/rhm_sprinklerlegs.cnf `. The flow that creates this file for the first time, after which you can edit it, can be found in [LegSettings](/data/LegSettings.json) under the flows folder.
 
 #### Electronics & Solenoids
 
