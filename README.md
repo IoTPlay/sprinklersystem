@@ -89,14 +89,14 @@ Some of the configs:
 
 #### Node-RED config  
 
-##### Auto-Switching:
+##### a) Auto-Switching:
 The most complex part of the auto-switching - per rules from the json file, are in the NR section below:
 
 ![The auto-switching flow](images/NR_SwitchingLogicFlow.png)
 
 Import the json file [NR_autoswitching.json](flows/NR_autoswitching.json) into Node-RED to get these flows into Node-RED.  
 
-##### Leg Settings
+##### b) Leg Settings:
 The persistent settings of the legs, which should sprinkle on what day, rest for how many minutes before the next leg, and how long the leg must go for, is persisted in a file ` /data/rhm_sprinklerlegs.cnf `. The flow that creates this file for the first time, after which you can edit it, can be found in [LegSettings](/data/LegSettings.json) under the flows folder.
 
 #### Electronics & Solenoids
