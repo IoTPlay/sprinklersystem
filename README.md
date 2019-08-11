@@ -61,9 +61,9 @@ Building blocks are:
 
 ### Notes on Solution Components
 
-- [About the Electronics](READ_electronics.md)
-- [About the Screens of the App (old)](READ_old_screens.md)
-- [Node-RED & ESP config (old)](READ_old_solcomp.md)
+- [About the Electronics](docs/READ_electronics.md)
+- [About the Screens of the App (old)](docs/READ_old_screens.md)
+- [Node-RED & ESP config (old)](docs/READ_old_solcomp.md)
 
 ## Todo
 The project is not yet completed. Further requirements includes:
