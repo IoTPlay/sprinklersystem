@@ -1,10 +1,17 @@
-on RebootUnit do Reboot
-
-on System#Boot do   //
+On System#Boot do
+  Publish espeasy/%sysname%/announce, {sysname: %sysname%, ip: %ip%, unit: %unit%, mac_int: %mac_int%, mac: %mac%}
    gpio,2,1                  // R5 - pump - off
    Publish /announceESP,%sysname%     // Announce ESP
    timerSet,1,110       // Set Timer 1 for the next event
 endon
+//--- Common commands -------
+on RebootUnit do Reboot endon
+on announce do
+  Publish espeasy/%sysname%/announce, {sysname: %sysname%, ip: %ip%, unit: %unit%, mac_int: %mac_int%, mac: %mac%}
+endon
+//--------------------------
+
+
 
 on Rules#Timer=1 do
     gpio,0,1   // R2 ~ off to fix the problem where it is on at start
@@ -17,7 +24,7 @@ on allsprinkleroff do  //
    gpio,5,0    // R3 ~ off
    gpio,4,0    // R4 ~ off
    gpio,2,1    // R5 ~ off
-   Publish /ESP62/Switch/Relay5,0
+   // Publish espeasy/ESP62/Switch/Relay5,0
 endon
 // --
 on L1 do  //
@@ -26,8 +33,8 @@ on L1 do  //
    gpio,5,0    // R3 ~ off
    gpio,4,0    // R4 ~ off
    gpio,2,0    // R5 ~ on
-   Publish /ESP62/Switch/Relay1,1
-   Publish /ESP62/Switch/Relay5,1
+   // Publish espeasy/ESP62/Switch/Relay1,1
+   // Publish espeasy/ESP62/Switch/Relay5,1
  endon
  // --
  on L2 do  //
@@ -36,26 +43,26 @@ on L1 do  //
    gpio,5,0    // R3 ~ off
    gpio,4,0    // R4 ~ off
    gpio,2,0    // R5 ~ on
-   Publish /ESP62/Switch/Relay2,1
-   Publish /ESP62/Switch/Relay5,1
+   // Publish espeasy/ESP62/Switch/Relay2,1
+   // Publish espeasy/ESP62/Switch/Relay5,1
  endon
 // --
  on L3 do  //
    gpio,15,0   // R1 ~ off
    gpio,0,1    // R2 ~ off
-   gpio,5,1    // R3 ~ on
-   gpio,4,0    // R4 ~ off
+   gpio,5,0    // R3 ~ off
+   gpio,4,1    // R4 ~ on
    gpio,2,0    // R5 ~ on
-   Publish /ESP62/Switch/Relay3,1
-   Publish /ESP62/Switch/Relay5,1
+   // Publish espeasy/ESP62/Switch/Relay3,1
+   // Publish espeasy/ESP62/Switch/Relay5,1
  endon
 // --
  on L4 do  //
    gpio,15,0  // R1 ~ off
    gpio,0,1    // R2 ~ off
-   gpio,5,0    // R3 ~ off
-   gpio,4,1    // R4 ~ on
+   gpio,5,1    // R3 ~ on
+   gpio,4,0    // R4 ~ off
    gpio,2,0    // R5 ~ on
-   Publish /ESP62/Switch/Relay4,1
-   Publish /ESP62/Switch/Relay5,1
+   // Publish espeasy/ESP62/Switch/Relay4,1
+   // Publish espeasy/ESP62/Switch/Relay5,1
  endon
