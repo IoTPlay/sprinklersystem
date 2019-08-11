@@ -8,9 +8,9 @@
 
 ### Pseudo Code
 
-|-----|---------|-----------------------|  
-|VAR  |Var Name | Var Description       |  
-|VAR#1|var auto | auto or manual mode?  |  
+|VAR  |Var Name | Var Description       |   
+|---- |-------- |---------------------- |  
+|VAR#1|var auto | auto or manual mode?  |    
 
 
 
