@@ -1,5 +1,6 @@
-# IoTPlay Sprinkler System
+# IoTPlay Sprinkler System 2.0
 
+After running my SprinklerSystem 1.0 for 3 yrs, its time formore & new concepts. Find below the still-in-progress functional requirements, to which I am building the system.
 
 ## Introduction
 
