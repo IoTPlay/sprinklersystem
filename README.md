@@ -7,20 +7,24 @@ A 4 x leg sprinkler system, and borehole pump switching system with RPi &amp; No
 
 ## Specifications of the System
 
-Find below the requirements I had when building the flows.
+Find below the requirements for an edge-based solution:
 
 #### Functional:
-- 4 sprinkler leg valves to be switched on- and off.
-- A borehole pump to be switched on before any leg is activated, and switched off afterwards.  
+- 4 x sprinkler leg valves to be switched on- and off.
+- A borehole pump to be switched on before any leg is activated, and switched off afterwards. 
+- Switching can either be automatic, or manual.
+  - For **automatic**, A schedule of start / stop / in-between leg-rest time will be downloaded to the ESP from the RPi at startup of the ESP.
+  - If **manual**, a message will be sent via mqtt for the leg to switch on, and duration it has to be in this state.
+- Whilst sprinkling, the ESP will send back a message to show the time left till it switches off.
 
 #### Schedules:
 - On the sprinkler `leg schedules`:
   - Able to switch each leg on `twice a day`;
   - Able to choose which legs should sprinkle on `which days`;
   - `Duration between` legs on as a variable- to allow the borehole water to fill-up;  
+- The above must be downloaded as variables to the ESP.
 
-
-- All schedules functions to be `data-driven`, where a json file on the system stores the definitions of all above, to allow this file to be manipulated to change sprinkling time, rest period, sprinkle period, and days,- per leg.
+//DEPRECATED//- All schedules functions to be `data-driven`, where a json file on the system stores the definitions of all above, to allow this file to be manipulated to change sprinkling time, rest period, sprinkle period, and days,- per leg.
 
 #### Web front-end:
 A Web front-end to work on a phone, where the sprinkler system can be:  
@@ -34,6 +38,11 @@ A Web front-end to work on a phone, where the sprinkler system can be:
   - Report on how much `water was pumped` for the day;
   - Report to view the current schedules, times, and rest periods that are set.
 
+#### Homie
+- the ESP8266 will be controlled with the [homie 4.0](https://github.com/homieiot/convention/blob/develop/convention.md) standard, (as at 2019 Aug - not yet promolgated).  
+#### Apple HomeKit
+- must be able to work with Apple Homekit.
+
 ## Implementation
 
 ### Systems Components Used
@@ -43,61 +52,11 @@ Building blocks are:
 - [Mosquitto](https://mosquitto.org) as MQTT server running on the same RPi
 - The sprinkler solenoids is controlled with an ESP8266, on a wifi network, using `mqtt` from Node-Red.
 - We use ESPEasy on the Node-RED, from the community  [letscontrolit.com](https://www.letscontrolit.com/wiki/index.php/ESPEasy).  
-- A MariaDB instance to track stats of sprinkling.
-
-
-All servers running on the RPi, runs in Docker images & containers, all published on [github IoTPlay](http://github/iotplay).
+- /DEPRECATED/ A MariaDB instance to track stats of sprinkling.
+- All servers running on the RPi, runs in Docker images & containers.
 
 
 ### Notes on Solution Components
-
-#### The json file with the leg definitions
-
-Two files defines the function: `rhm_sprinklerlegs` and `rhm_settings`. Examples below:
-
-1. `rhm_sprinklerlegs.ncf`
-Example json file on `~/data/rhm_sprinklerlegs.cnf` directory that defined the sprinkling times:
-
-```
-{"legday":
-  [
-    [1,1,1,1,1,0,1,"L1A",15,40],
-    [0,0,0,0,0,1,0,"L1B",15,40],
-    [1,1,1,1,1,0,1,"L2A",15,40],
-    [0,0,0,0,0,0,0,"L2B",15,40],
-    [0,0,0,0,0,0,0,"L3A",15,40],
-    [1,1,1,1,1,1,1,"L3B",15,40],
-    [0,0,0,0,0,0,0,"L4A",15,40],
-    [1,1,1,1,1,1,1,"L4B",15,40]
-  ]
-}
-```
-
-Row 1 explained: sprinkle leg 1, morning, for 15 minutes, then rest 40 minutes for the borehole to fill-up, and sprinkle all days except Friday (our grass is cut on this day).
-
-2. `rhm_settings.cnf`:
-
-```
-{"sprinkler_auto":1,"pool_auto":0,"sprinkler_A_start":"05:15","sprinkler_B_start":"18:00","geyser_auto":1}
-```
-
-#### The configuration of the ESPEasy config
-Some of the configs:
-
-- See screens 4-6 below, for the Devices.
-- Also see the Rules, which mqtt messages trigger in the file [ESP8266_rules](ESP8266_rules.txt).
-
-#### Node-RED config  
-
-##### a) Auto-Switching:
-The most complex part of the auto-switching - per rules from the json file, are in the NR section below:
-
-![The auto-switching flow](images/NR_SwitchingLogicFlow.png)
-
-Import the json file [NR_autoswitching.json](flows/NR_autoswitching.json) into Node-RED to get these flows into Node-RED.  
-
-##### b) Leg Settings:
-The persistent settings of the legs, which should sprinkle on what day, rest for how many minutes before the next leg, and how long the leg must go for, is persisted in a file ` /data/rhm_sprinklerlegs.cnf `. The flow that creates this file for the first time, after which you can edit it, can be found in [LegSettings](/flows/LegSettings.json) under the flows folder.
 
 #### Electronics & Solenoids
 
@@ -139,47 +98,3 @@ The project is not yet completed. Further requirements includes:
 
 
 
-## The Screens of Dashboard, Node-RED, and Photos of the Electronics  
-
-### The Node-RED Dashboard  
-![Dashboard 1](images/Node-RED_Dashboard_Screen1.png)  
-  Screen 1: Node-RED dashboard screen 1  
-
-![Dashboard 2](images/Node-RED_Dashboard_Screen2.png)  
-Screen 2: Node-RED dashboard screen 2  
-
-
-### The Node-RED Admin screen  
-![Node-RED Admin](images/Node-RED_Flows.png)  
-Screen 3: Node-RED Admin flows  
-
-### The ESP8266 Config Screens  
-
-![ESPEasy config1](images/ESP8266_config_1.png)  
-Screen 4: ESPEasy config screeen 1  
-
-![ESPEasy config2](images/ESP8266_config_2.png)  
-Screen 5: ESPEasy config screeen 2  
-
-![ESPEasy config3](images/ESP8266_config_3.png)  
-Screen 6: ESPEasy config screeen 3  
-
-### The Sprinkler Controller  
-
-![](images/Sprinkler_controller_AandB.jpg)  
-Picture 1: Left - The (controller B) Solenoids, Right - (controller A) the ESP controller  
-
-![](images/Sprinkler_controllerA_1-Inside.jpg)  
-Picture 2: ESP controller Inside  
-
-![](images/Sprinkler_controllerB_2a-Inside.jpg)  
-Picture 3: Relay controller Inside view 1  
-
-![](images/Sprinkler_controllerB_2a-Inside.jpg)  
-Picture 4: Relay controller Inside view 1  
-
-![](images/Sprinkler_controllerB_2b-Inside.jpg)  
-Picture 5: Relay controller Inside view 2  
-
-![](images/Sprinkler_controllerB_2c-Inside.jpg)  
-Picture 6: Relay controller Inside view 3  
