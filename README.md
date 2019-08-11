@@ -3,7 +3,7 @@
 
 ## Introduction
 
-A 4 x leg sprinkler system, and borehole pump switching system with RPi &amp; Node-RED, and ESP8266
+A 4 x leg sprinkler system, and borehole pump switching system with RPi &amp; Node-RED, and ESP8266. Where-as Sprinkler 1.0 did all the control from Node-RED on the RPi, the next version - Sprinkler 2.0 will provide the variables of control to the ESP8266, and it will do the control.
 
 ## Specifications of the System
 
