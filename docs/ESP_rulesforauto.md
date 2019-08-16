@@ -28,7 +28,7 @@ The Variable names:
 |VAR#15 |dur      | leg duration on       |        
 |VAR#16 |auto     | auto or manual mode?  |    
 
-### Pseudo Code - scenario 1
+#### Scenario 1
 
 A possible scenario to use the 16 variables if we upload the variables to the ESP everytime it boots up.
 
@@ -45,6 +45,12 @@ Unresolved with this approach:
 - can minutes of time be stored ie as 11 min?
 - days - what about the other schedule, thus remove days from variables, and upload the day's schedule every day...   
 - Can we upload the variables with mqtt? 
+
+## Pseudo Code
+
+```
+Let,1,[Temp#Value]
+```
 
 ### References
 
