@@ -1,6 +1,7 @@
 # JR: Load this in GitHub/sprinklersystem/code
-# Command from Terminal: cp ~/GitHub/sprinklersystem/code/pre_extra_script.py ~/GitHub/ESPEasy/
-
+# JR: Command from Terminal: cp ~/GitHub/sprinklersystem/code/pre_extra_script.py ~/GitHub/ESPEasy/
+# JR: Then Terminal command: cp ~/GitHub/ESPEasy/.pio/build/custom_ESP8266_4M/firmware.bin ~/Downloads/
+# JR: Then, Stage selected changes in ~/GitHub/ESPEasy/ of file pre_extrat_script.py
 Import("env")
 
 # access to global construction environment
