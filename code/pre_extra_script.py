@@ -1,4 +1,6 @@
 # JR: Load this in GitHub/sprinklersystem/code
+# Command from Terminal: cp ~/GitHub/sprinklersystem/code/pre_extra_script.py ~/GitHub/ESPEasy/
+
 Import("env")
 
 # access to global construction environment
