@@ -20,7 +20,8 @@ env.Append(CPPDEFINES=[
   "USES_P001",  # Switch
   "USES_C014",  # Homie Controller
   "USES_P086",  # Homie Receiver
-  "USES_P005",  # DHT 22
+  "USES_P005",  # DHT22
+  "USES_P033",  # Dummy Device
 
   ("WEBSERVER_RULES_DEBUG", "0")
 ])
