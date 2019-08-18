@@ -1,70 +1,66 @@
-//--------
-On doTest do
-    TaskValueSet,1,4,%eventvalue%
-    Publish testing/%sysname%/message,"This is a Test"
-endon
-//--------
+
 On isAuto do
-    Let,2,[VAR#1] // Auto On?
+    Let,1,%eventvalue% 
     TaskValueSet,1,1,%eventvalue%
 endon
 //--------
 On durOnManual_min do
+    Let,2,%eventvalue%
     TaskValueSet,1,2,%eventvalue%  
 endon
 On durRest_min do
-    Let,%eventvalue%,[VAR#2]
+    Let,3,%eventvalue%
     TaskValueSet,1,3,%eventvalue%  
 endon
 //--------
 On startHr1 do
-    Let,%eventvalue%,[VAR#5]
+    Let,5,%eventvalue%
     TaskValueSet,2,1,%eventvalue%  
 endon
 On startMin1 do
-    Let,%eventvalue%,[VAR#6]
+    Let,6,%eventvalue%
     TaskValueSet,2,2,%eventvalue%  
 endon
 On startHr2 do
-    Let,%eventvalue%,[VAR#7]
+    Let,7,%eventvalue%
     TaskValueSet,2,3,%eventvalue%  
 endon
 On startMin2 do
-    Let,%eventvalue%,[VAR#8]
+    Let,8,%eventvalue%
     TaskValueSet,2,4,%eventvalue%  
-endon
-//--------
-On doLeg1 do
-    Let,%eventvalue%,[VAR#13]
-    // Publish testing/%sysname%/eventDay1,%eventvalue%
-    TaskValueSet,4,1,%eventvalue%
-endon
-On doLeg2 do
-    Let,%eventvalue%,[VAR#14]
-    TaskValueSet,3,2,%eventvalue%
-endon
-On doLeg3 do
-    Let,%eventvalue%,[VAR#15]
-    TaskValueSet,3,3,%eventvalue%
-endon
-On doLeg4 do
-    Let,%eventvalue%,[VAR#16]
-    TaskValueSet,3,4,%eventvalue%
 endon
 // -----
 On durLeg1 do
-    Let,%eventvalue%,[VAR#9]
+    Let,13,%eventvalue%
     TaskValueSet,4,1,%eventvalue%  
 endon
 On durLeg2 do
-    Let,%eventvalue%,[VAR#10]
+    Let,14,%eventvalue%
     TaskValueSet,4,2,%eventvalue%  
 endon
 On durLeg3 do
-    Let,%eventvalue%,[VAR#11]
+    Let,15,%eventvalue%
     TaskValueSet,4,3,%eventvalue%  
 endon
 On durLeg4 do
-    Let,%eventvalue%,[VAR#12]
+    Let,16,%eventvalue%
     TaskValueSet,4,4,%eventvalue%  
+endon
+//--------
+On doLeg1 do
+    Let,9,%eventvalue%
+    // Publish testing/%sysname%/eventDay1,%eventvalue%
+    TaskValueSet,3,1,%eventvalue%
+endon
+On doLeg2 do
+    Let,10,%eventvalue%
+    TaskValueSet,3,2,%eventvalue%
+endon
+On doLeg3 do
+    Let,11,%eventvalue%
+    TaskValueSet,3,3,%eventvalue%
+endon
+On doLeg4 do
+    Let,12,%eventvalue%
+    TaskValueSet,3,4,%eventvalue%
 endon

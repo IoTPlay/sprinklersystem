@@ -14,24 +14,24 @@
 
 #### Scenario 1
 
-|VAR   |Var Name   | Var Description                 |   
-|------|--------   |------------------------------   |  
-|VAR#1 |isAuto     | auto or manual mode?            |    
-|VAR#2 |durOnManual| leg duration on manual in min   |        
-|VAR#3 |durRest_min| Rest time between legs          |    
+|VAR   |Var Name        | Var Description                 |   
+|------|--------        |------------------------------   |  
+|VAR#1 |isAuto          | auto or manual mode?            |    
+|VAR#2 |durOnManual_min | leg duration on manual in min   |        
+|VAR#3 |durRest_min     | Rest time between legs          |    
 | | | |
-|VAR#5 |startHr1   | |
-|VAR#6 |startMin1  | |
+|VAR#5 |startHr1        | |
+|VAR#6 |startMin1       | |
 | | | |
-|VAR#9 |doLeg1      | Sprinkler Leg 1       |
-|VAR#10|doLeg2      | Sprinkler Leg 2       |
-|VAR#11|doLeg3      | Sprinkler Leg 3       |
-|VAR#12|doLeg4      | Sprinkler Leg 4       |
+|VAR#9 |doLeg1          | Sprinkler Leg 1       |
+|VAR#10|doLeg2          | Sprinkler Leg 2       |
+|VAR#11|doLeg3          | Sprinkler Leg 3       |
+|VAR#12|doLeg4          | Sprinkler Leg 4       |
 | | | |
-|VAR#13|durLeg1     | |
-|VAR#14|durLeg2     | |
-|VAR#15|durLeg3     | |
-|VAR#16|durLeg4     | |
+|VAR#13|durLeg1         | |
+|VAR#14|durLeg2         | |
+|VAR#15|durLeg3         | |
+|VAR#16|durLeg4         | |
 
 
 #### Scenario 3  (Old - not good)
