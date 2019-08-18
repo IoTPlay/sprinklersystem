@@ -1,0 +1,11 @@
+// Using homie Receiver - still in testing
+// on System#Boot do    //When the ESP boots, do
+//  timerSet,1,10      //Set Timer 1 for the next event in 10 seconds
+// endon
+//---
+if [VAR#1] = 1 // isAuto
+    On Clock#Time=All,"[Var#5]:[Var#6]" do
+        Publish testing/%sysname%/message,"ClockTimeTest Okay"
+        // if %sysweekday_s% = "Sat" endif
+    endon
+endif
