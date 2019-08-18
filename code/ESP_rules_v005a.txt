@@ -9,23 +9,10 @@ if [VAR#1] = 1 // isAuto
         // if %sysweekday_s% = "Sat" endif
     endon
 endif
-// ----- Vars -------
-On doLeg1 do
-    Let,%eventvalue%,[VAR#13]
-    // Publish testing/%sysname%/eventDay1,%eventvalue%
-    TaskValueSet,4,1,%eventvalue%
-endon
-On doLeg2 do
-    Let,%eventvalue%,[VAR#14]
-    TaskValueSet,4,2,%eventvalue%
-endon
-On doLeg3 do
-    Let,%eventvalue%,[VAR#15]
-    TaskValueSet,4,3,%eventvalue%
-endon
-On doLeg4 do
-    Let,%eventvalue%,[VAR#16]
-    TaskValueSet,4,4,%eventvalue%
+//--------
+On doTest do
+    TaskValueSet,1,4,%eventvalue%
+    Publish testing/%sysname%/message,"This is a Test"
 endon
 //--------
 On isAuto do
@@ -72,4 +59,22 @@ endon
 On durLeg4 do
     Let,%eventvalue%,[VAR#12]
     TaskValueSet,3,4,%eventvalue%  
+endon
+// ----- Vars -------
+On doLeg1 do
+    Let,%eventvalue%,[VAR#13]
+    // Publish testing/%sysname%/eventDay1,%eventvalue%
+    TaskValueSet,4,1,%eventvalue%
+endon
+On doLeg2 do
+    Let,%eventvalue%,[VAR#14]
+    TaskValueSet,4,2,%eventvalue%
+endon
+On doLeg3 do
+    Let,%eventvalue%,[VAR#15]
+    TaskValueSet,4,3,%eventvalue%
+endon
+On doLeg4 do
+    Let,%eventvalue%,[VAR#16]
+    TaskValueSet,4,4,%eventvalue%
 endon
