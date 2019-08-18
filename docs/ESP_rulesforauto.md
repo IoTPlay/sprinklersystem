@@ -12,7 +12,31 @@
 
 ### Possible use of the 16 ESP variables
 
-The Variable names: 
+#### Scenario 1
+
+|VAR   |Var Name   | Var Description                 |   
+|------|--------   |------------------------------   |  
+|VAR#1 |auto       | auto or manual mode?            |    
+|VAR#2 |durOnManual| leg duration on manual in min   |        
+|VAR#3 |durRest_min| Rest time between legs          |    
+|VAR#5 |startHr1   | |
+|VAR#6 |startMin1  | |
+|VAR#9 |durLeg1  | |
+|VAR#10|durLeg2  | |
+|VAR#11|durLeg3  | |
+|VAR#12|durLeg4  | |
+|VAR#13| doLeg1    | Sprinkler Leg 1       |
+|VAR#14| doLeg2    | Sprinkler Leg 2       |
+|VAR#15| doLeg3    | Sprinkler Leg 3       |
+|VAR#16| doLeg4    | Sprinkler Leg 4       |
+
+
+#### Scenario 3  (Old - not good)
+
+<details>
+<summary>A possible scenario to use the 16 variables if we upload the variables to the ESP everytime it boots up, but not enough variables.... </summary>
+
+
 
 |VAR    |Var Name | Var Description       |   
 |----   |-------- |---------------------- |  
@@ -28,15 +52,13 @@ The Variable names:
 |VAR#15 |dur      | leg duration on       |        
 |VAR#16 |auto     | auto or manual mode?  |    
 
-#### Scenario 1
-
-A possible scenario to use the 16 variables if we upload the variables to the ESP everytime it boots up.
 
 Sprinklers currently on `Auto`, leg duration 14 min, rest between leg on's 20 min, sprinklel legs 1, 3. Current sprinkle time is 11 min. Do this programme on Sun, Tue, Thu, ...
 
 | V1 | V2 | V3 | V4 | V5 | V6 | V7 | V8 | V9 | V10 | V11 | V12 | V13 | V14 | V15 | V16 |   
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |  1 |    |  1 |    | 11 |    | 1  |    | 1  |     |  1  |     |  1  |  20 |  14 |  1  |      
+
 
 Unresolved with this approach:
 
@@ -45,6 +67,9 @@ Unresolved with this approach:
 - can minutes of time be stored ie as 11 min?
 - days - what about the other schedule, thus remove days from variables, and upload the day's schedule every day...   
 - Can we upload the variables with mqtt? 
+
+</details>
+
 
 ## Pseudo Code
 

@@ -41,7 +41,7 @@ Some of the configs:
 ##### a) Auto-Switching:
 The most complex part of the auto-switching - per rules from the json file, are in the NR section below:
 
-![The auto-switching flow](images/NR_SwitchingLogicFlow.png)
+![The auto-switching flow](images/sprinkler_v1.0/NR_SwitchingLogicFlow.png)
 
 Import the json file [NR_autoswitching.json](flows/NR_autoswitching.json) into Node-RED to get these flows into Node-RED.  
 

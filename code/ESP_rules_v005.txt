@@ -1,67 +1,76 @@
 // Using homie Receiver - still in testing
-on System#Boot do    //When the ESP boots, do
+// on System#Boot do    //When the ESP boots, do
 //  timerSet,1,10      //Set Timer 1 for the next event in 10 seconds
-endon
+// endon
 //---
+On Clock#Time=All,"[Var#1]:[Var#2]" do
+endon
+
 if [VAR#16] = 1 and // isAuto. // and %syshour% > 
-  if %sysweekday_s% = "Sat"  
-  endif
+    if %sysweekday_s% = "Sat"  
+    endif
 endif
 // ----- Vars -------
 On doLeg1 do
-  Let,2,[VAR#1]
-  // Publish testing/%sysname%/eventDay1,%eventvalue%
-  TaskValueSet,1,1,%eventvalue%
+    Let,%eventvalue%,[VAR#13]
+    // Publish testing/%sysname%/eventDay1,%eventvalue%
+    TaskValueSet,4,1,%eventvalue%
 endon
 On doLeg2 do
-  Let,2,[VAR#2] 
-  TaskValueSet,1,2,%eventvalue%
+    Let,%eventvalue%,[VAR#14]
+    TaskValueSet,4,2,%eventvalue%
 endon
 On doLeg3 do
-  Let,2,[VAR#3] 
-  TaskValueSet,1,3,%eventvalue%
+    Let,%eventvalue%,[VAR#15]
+    TaskValueSet,4,3,%eventvalue%
 endon
 On doLeg4 do
-  Let,2,[VAR#4] 
-  TaskValueSet,1,4,%eventvalue%
+    Let,%eventvalue%,[VAR#16]
+    TaskValueSet,4,4,%eventvalue%
 endon
 //--------
 On isAuto do
-  Let,2,[VAR#16] // Auto On?
-  TaskValueSet,5,4,%eventvalue%
+    Let,2,[VAR#1] // Auto On?
+    TaskValueSet,1,1,%eventvalue%
 endon
 //--------
-On durOn do
-  TaskValueSet,2,3,%eventvalue%  
+On durOnManual_min do
+    TaskValueSet,1,2,%eventvalue%  
 endon
-On durRest do
-  TaskValueSet,2,4,%eventvalue%  
-endon
-//--------
-On startTime1 do
-  TaskValueSet,2,1,%eventvalue%  
+On durRest_min do
+    Let,%eventvalue%,[VAR#2]
+    TaskValueSet,1,3,%eventvalue%  
 endon
 //--------
+On startHr1 do
+    Let,%eventvalue%,[VAR#5]
+    TaskValueSet,2,1,%eventvalue%  
+endon
+On startMin1 do
+    Let,%eventvalue%,[VAR#6]
+    TaskValueSet,2,2,%eventvalue%  
+endon
+On startHr2 do
+    Let,%eventvalue%,[VAR#7]
+    TaskValueSet,2,3,%eventvalue%  
+endon
+On startMin2 do
+    Let,%eventvalue%,[VAR#8]
+    TaskValueSet,2,4,%eventvalue%  
+endon//--------
 On durLeg1 do
-  TaskValueSet,3,1,%eventvalue%  
+    Let,%eventvalue%,[VAR#9]
+    TaskValueSet,3,1,%eventvalue%  
 endon
 On durLeg2 do
-  TaskValueSet,3,2,%eventvalue%  
+    Let,%eventvalue%,[VAR#10]
+    TaskValueSet,3,2,%eventvalue%  
 endon
 On durLeg3 do
-  TaskValueSet,3,3,%eventvalue%  
+    Let,%eventvalue%,[VAR#11]
+    TaskValueSet,3,3,%eventvalue%  
 endon
 On durLeg4 do
-  TaskValueSet,3,4,%eventvalue%  
+    Let,%eventvalue%,[VAR#12]
+    TaskValueSet,3,4,%eventvalue%  
 endon
-//--------
-On doSun do
-  TaskValueSet,4,1,%eventvalue%  
-endon
-On doMon do
-  TaskValueSet,4,2,%eventvalue%  
-endon
-On doTue do
-  TaskValueSet,4,3,%eventvalue%  
-endon
-// ---------------------
