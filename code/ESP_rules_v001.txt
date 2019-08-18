@@ -1,3 +1,4 @@
+// on ESP62 now...
 On System#Boot do
   Publish espeasy/%sysname%/announce, {sysname: %sysname%, ip: %ip%, unit: %unit%, mac_int: %mac_int%, mac: %mac%}
    gpio,2,1                  // R5 - pump - off

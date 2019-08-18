@@ -1,12 +1,17 @@
 // Using homie Receiver - still in testing
 on System#Boot do    //When the ESP boots, do
-//  timerSet,1,10      //Set Timer 1 for the next event in 10 seconds
+//  timerSet,1,60      //Set Timer 1 = 60s
 endon
-//---
-if [VAR#16] = 1 and // isAuto. // and %syshour% > 
-  if %sysweekday_s% = "Sat"  
-  endif
-endif
+
+On Rules#Timer=1 do  
+    if [VAR#16] = 1 and %syshour% =  // isAuto.  
+    if %sysweekday_s% = "Sun"   
+    endif
+    endif
+
+endon
+   
+
 // ----- Vars -------
 On doLeg1 do
   Let,2,[VAR#1]
