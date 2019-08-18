@@ -55,4 +55,4 @@ Let,1,[Temp#Value]
 ### References
 
 - Create a rule note based on a device: [Forum](https://www.letscontrolit.com/forum/viewtopic.php?f=6&t=6832&p=37809&hilit=rule+set#p37809)
-- ESPEasy Rules, heading 'Internal Variables': [Documentation](https://espeasy.readthedocs.io/en/latest/Rules/Rules.html)
+- ESPEasy Rules, heading 'Internal Variables': [Documentation](https://espeasy.readthedocs.io/en/latest/Rules/Rules.html#internal-variables)
