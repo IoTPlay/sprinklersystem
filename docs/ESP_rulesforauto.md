@@ -33,6 +33,12 @@
 |VAR#15|durLeg3         | |
 |VAR#16|durLeg4         | |
 
+##### HowTo
+
+- setting a Dummy field with mqtt:    
+    `<MQTT subscribe template>/cmd -> event,<eventName>=<eventValue>`
+    Then, in the ESP rules:
+    `TaskValueSet,<task/device nr>,<value nr>,<value/formula> `
 
 #### Scenario 3  (Old - not good)
 
@@ -79,6 +85,17 @@ Unresolved with this approach:
 ```
 Let,1,[Temp#Value]
 ```
+
+## Homie Controller details
+
+| Setting               | The Setting                             |
+|---------------------  |-----------------------------------------|
+|Controller Subscribe   | homie/%sysname%/%tskname%/%valname%/set |
+| non-Homie subs        | homie/%sysname%/#                       |
+|Controller Publish     | homie/%sysname%/%tskname%/%valname%     |
+|Controller lwl Topic   | homie/%sysname%/$state |
+|LWT Connect Message    | ready |
+|LWT Disconnect Messagge| lost |
 
 ### References
 
