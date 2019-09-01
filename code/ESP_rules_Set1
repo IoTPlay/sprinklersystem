@@ -1,19 +1,87 @@
-// Using normal mqtt
-// on System#Boot do    //When the ESP boots, do
-//  timerSet,1,10      //Set Timer 1 for the next event in 10 seconds
-// endon
-//---
-if [Dummy1#isAuto] = 1 // isAuto
-    On Clock#Time=All,"[Var#5]:[Var#6]" do
-        Publish testing/%sysname%/message,"ClockTimeTest Okay"
-        // if %sysweekday_s% = "Sat" endif
-    endon
-endif
-
-
-//--------
-On doTest do
-//    Publish testing/%sysname%/variables,{eventvalue: %eventvalue%, isAuto:%v1%, durOnManual_min: %v2%, durRest_min: %v3%, startHr1: %v5%, startMin1: %v6%, doLeg1: %v9%, durLeg1: %v13%}
-    Publish testing/%sysname%/variables,{isAuto:[Dummy1#isAuto],durOnManual_min:[Dummy1#isAuto],durRest_min:[Dummy1#durRest_min],startHr1:[Dummy2#startHr1],startMin1:[Dummy2#startMin1]}
+on System#Boot do    //When the ESP boots, do
+  Monitor GPIO,0
+  Monitor GPIO,2
+  Monitor GPIO,4
+  Monitor GPIO,5
+  Monitor GPIO,14  
+  Let,9,0 // var for next leg
+  timerSet,1,40      //Set Timer 1 for the next event in 10 seconds
 endon
-//--------
+
+  // ---which leg to start
+On [Rules#Timer]=1 do 
+  Publish testing/%sysname%/nextLegStart,0
+  if [Dummy3#doL1]=1.00  
+    Set,1,9
+  endif
+  if [Dummy3#doL1]=0.00 and [Dummy3#doL2]=1.00 
+    Set,2,9
+  endif
+  if [Dummy3#doL1]=0.00 and [Dummy3#doL2]=0.00 and [Dummy3#doL3]=1.00  
+    Set,3,9
+  endif
+  Publish testing/%sysname%/nextLegStart,%v9%
+endon
+
+// the 1st leg 
+On Clock#Time=All,"[Dummy2#startHr1]:[Dummy2#startMin1]" do
+  event,doNextLeg
+endon
+
+On doNextLeg do
+  Publish testing/%sysname%/Variables,{"isAuto":[Dummy1#isAuto]}
+  if [Dummy1#isAuto]=1
+    if [VAR#9]=1 
+      event,L1
+      timerSet,2,[Dummy4#durLeg1_s]
+      Set,8,[Dummy4#durLeg1_s]  
+    endif
+    if [VAR#9]=2 
+      event,L2
+      timerSet,2,[Dummy4#durLeg2_s]
+      Set,8,[Dummy4#durLeg2_s] 
+    endif
+    if [VAR#9]=3 
+      event,L3
+      timerSet,2,[Dummy4#durLeg3_s]
+      Set,8,[Dummy4#durLeg3_s]  
+    endif
+    if [VAR#9]=4 
+      event,L4
+      timerSet,5,[Dummy4#durLeg3_s] // just end, do not loop
+      Set,8,[Dummy4#durLeg4_s]  
+    endif
+  endif //isAuto
+endon
+
+On [Rules#Timer]=2 do // timer 2
+  event,allsprinkleroff
+  Publish homie/%sysname%/Sprinklers/legTime,{"Leg":%v9%,"duration":%v8%}
+  event,nextLeg
+endon
+
+On nextLeg do
+  if [VAR#9]=0
+    if [Dummy3#doL1]=1
+        Set,1,9
+    endif
+    if [Dummy3#doL1]=0 and [Dummy3#doL2]=1
+      Set,2,9
+    endif
+    if [Dummy3#doL1]=0 and [Dummy3#doL2]=0  and [Dummy3#doL3]=1
+      Set,3,9
+    endif
+  endif // %v9%=0 
+  if [VAR#9]=1 and [Dummy3#doL2]=1
+    Set,2,9
+    event,DoNextLeg
+  endif
+  if [VAR#9]=2 and [Dummy3#doL3]=1
+    Set,3,9
+    event,doNextLeg
+  endif
+  if [VAR#9]=3 and [Dummy3#doL4]=1
+    Set,4,9
+    event,doNextLeg
+  endif
+endon

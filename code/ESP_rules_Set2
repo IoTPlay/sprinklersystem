@@ -1,20 +1,22 @@
-
+// The Sprinkling Variables
 On isAuto do
     TaskValueSet,1,1,%eventvalue%
 endon
 //--------
-On durOnManual_min do
+On durOnManual_s do
     TaskValueSet,1,2,%eventvalue%  
 endon
-On durRest_min do
+On durRest_s do
     TaskValueSet,1,3,%eventvalue%  
 endon
+
 //--------
 On startHr1 do
     TaskValueSet,2,1,%eventvalue%  
 endon
 On startMin1 do
     TaskValueSet,2,2,%eventvalue%  
+    Let,7,%eventvalue%
 endon
 On startHr2 do
     TaskValueSet,2,3,%eventvalue%  
@@ -23,28 +25,61 @@ On startMin2 do
     TaskValueSet,2,4,%eventvalue%  
 endon
 // -----
-On durLeg1 do
+On durLeg1_s do
     TaskValueSet,4,1,%eventvalue%  
 endon
-On durLeg2 do
+On durLeg2_s do
     TaskValueSet,4,2,%eventvalue%  
 endon
-On durLeg3 do
+On durLeg3_s do
     TaskValueSet,4,3,%eventvalue%  
 endon
-On durLeg4 do
+On durLeg4_s do
     TaskValueSet,4,4,%eventvalue%  
 endon
 //--------
-On doLeg1 do
+On doL1 do
     TaskValueSet,3,1,%eventvalue%
 endon
-On doLeg2 do
+On doL2 do
     TaskValueSet,3,2,%eventvalue%
 endon
-On doLeg3 do
+On doL3 do
     TaskValueSet,3,3,%eventvalue%
 endon
-On doLeg4 do
+On doL4 do
     TaskValueSet,3,4,%eventvalue%
 endon
+
+//-- Monitor gpio's to 16 variables
+on GPIO#14 do  //R1
+    Let,11,%eventvalue%
+endon
+// -- inversed --
+on GPIO#0=1 do  //R2
+    Let,12,0
+endon
+on GPIO#0=0 do  //R2
+    Let,12,1
+endon
+//---
+on GPIO#4 do  //R3
+  Let,13,%eventvalue%
+endon
+on GPIO#5 do  //R4
+  Let,14,%eventvalue%
+endon
+// -- inversed --
+on GPIO#2=1 do  //R5
+        Let,15,0
+endon
+on GPIO#2=0 do  //R5
+        Let,15,1
+endon
+
+//--------
+On doTest do
+  // Publish testing/%sysname%/variables,{isAuto:[Dummy1#isAuto],durOnManual_min:[Dummy1#isAuto],durRest_s:[Dummy1#durRest_s],startHr1:[Dummy2#startHr1],startMin1:[Dummy2#startMin1]}
+  Publish testing/%sysname%/relays,{"R1":%v11%,"R2":%v12%,"R3":%v13%,"R4":%v14%,"R5":%v15%}
+endon
+//--------

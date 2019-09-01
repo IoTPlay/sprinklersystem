@@ -1,0 +1,2 @@
+
+//    Publish testing/%sysname%/variables,{eventvalue: %eventvalue%, isAuto:%v1%, durOnManual_min: %v2%, durRest_min: %v3%, startHr1: %v5%, startMin1: %v6%, doLeg1: %v9%, durLeg1: %v13%}
