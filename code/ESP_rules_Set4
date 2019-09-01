@@ -1,0 +1,50 @@
+// RulesSet 3 -- for Manual mode -----
+on allsprinkleroff do 
+  gpio,14,0   // R1 ~ off
+  gpio,0,1    // R2 ~ off
+  gpio,5,0    // R3 ~ off
+  gpio,4,0    // R4 ~ off
+  gpio,2,1    // R5 ~ off
+  // Publish homie/%sysname%/L1/State,0
+
+endon
+// --
+on L1 do 
+  gpio,14,1   // R1 ~ on
+  gpio,0,1    // R2 ~ off
+  gpio,5,0    // R3 ~ off
+  gpio,4,0    // R4 ~ off
+  gpio,2,0    // R5 ~ on
+  timerSet,5,[varSet4#durLeg1_s]
+endon
+ // --
+on L2 do 
+  gpio,14,0   // R1 ~ off
+  gpio,0,0    // R2 ~ on
+  gpio,5,0    // R3 ~ off
+  gpio,4,0    // R4 ~ off
+  gpio,2,0    // R5 ~ on
+  timerSet,5,[varSet4#durLeg2_s]
+endon
+// --
+on L3 do 
+  gpio,14,0   // R1 ~ off
+  gpio,0,1    // R2 ~ off
+  gpio,5,0    // R3 ~ off
+  gpio,4,1    // R4 ~ on
+  gpio,2,0    // R5 ~ on
+  timerSet,5,[varSet4#durLeg3_s]
+endon
+// --
+on L4 do 
+  gpio,14,0   // R1 ~ off
+  gpio,0,1    // R2 ~ off
+  gpio,5,1    // R3 ~ on
+  gpio,4,0    // R4 ~ off
+  gpio,2,0    // R5 ~ on
+  timerSet,5,[varSet4#durLeg4_s]
+endon
+
+On Rules#Timer=5 do
+  event,allsprinkleroff
+endon
