@@ -1,25 +1,23 @@
 On nextLeg do
-  if [VAR#9]=0
-    if [varSet3#doL1]=1
-      Let,9,1
+    if [VAR#9]=1 and [varSet3#doL2]=1
+        Let,9,2 
+        event,DoNextLeg
     endif
-    if [varSet3#doL1]=0 and [varSet3#doL2]=1
-      Let,9,2
+    if [VAR#9]=2 and [varSet3#doL3]=1
+        Let,9,3
+        event,doNextLeg
     endif
-    if [varSet3#doL1]=0 and [varSet3#doL2]=0  and [varSet3#doL3]=1
-      Let,9,3
+    if [VAR#9]=3 and [varSet3#doL4]=1
+        Let,9,4
+        event,doNextLeg
     endif
-  endif 
-  if [VAR#9]=1 and [varSet3#doL2]=1
-    Let,9,2 
-    event,DoNextLeg
-  endif
-  if [VAR#9]=2 and [varSet3#doL3]=1
-    Let,9,3
-    event,doNextLeg
-  endif
-  if [VAR#9]=3 and [varSet3#doL4]=1
-    Let,9,4
-    event,doNextLeg
-  endif
+    if [VAR#9]=4
+        TaskValueSet,1,4,1 //scheduleUsed
+    endif
+    if [varSet3#doL3]=1 and [varSet3#doL4]=0
+        TaskValueSet,1,4,1 //scheduleUsed
+    endif
+    if [varSet3#doL2]=1 and [varSet3#doL3]=0 and [varSet3#doL4]=0
+        TaskValueSet,1,4,1 //scheduleUsed
+    endif
 endon
