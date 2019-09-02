@@ -1,11 +1,6 @@
 on System#Boot do 
-  Monitor GPIO,0
-  Monitor GPIO,2
-  Monitor GPIO,4
-  Monitor GPIO,5
-  Monitor GPIO,14  
   Let,9,0 
-  timerSet,1,45
+  timerSet,1,30
 endon
 
   //--start leg stored in [VAR#9] 
@@ -34,35 +29,38 @@ else
   endon
 endif
 
-
 On doNextLeg do
   if [varSet1#isAuto]=1 
-    Publish testing/%sysname%/Variables,{"where":"doNextLeg-start","isAuto":[varSet1#isAuto],"var9":[VAR#9]}
+    Publish testing/%sysname%/Variables,{"where":"doNextLeg-start","Leg":[VAR#9]}
     if [VAR#9]=1 
       event,L1
-      timerSet,2,[varSet4#durLeg1_s]
       Let,8,[varSet4#durLeg1_s]  
+      timerSet,2,[varSet4#durLeg1_s]
+      Delay,[varSet4#durLeg1_s]x1000
     endif
     if [VAR#9]=2 
       event,L2
-      timerSet,2,[varSet4#durLeg2_s]
       Let,8,[varSet4#durLeg2_s] 
+      timerSet,2,[varSet4#durLeg2_s]
+      Delay,[varSet4#durLeg2_s]x1000
     endif
     if [VAR#9]=3 
       event,L3
-      timerSet,2,[varSet4#durLeg3_s]
       Let,8,[varSet4#durLeg3_s]  
+      timerSet,2,[varSet4#durLeg3_s]
+      Delay,[varSet4#durLeg3_s]x1000
     endif
     if [VAR#9]=4 
       event,L4
-      timerSet,5,[varSet4#durLeg3_s] 
       Let,8,[varSet4#durLeg4_s]  
+      timerSet,5,[varSet4#durLeg3_s] 
+      Delay,[varSet4#durLeg4_s]x1000
     endif
   endif //isAuto 
 endon
 
 On Rules#Timer=2 do 
   event,allsprinkleroff
-  Publish homie/%sysname%/Sprinklers/JSONstats,{"where":"timer2","what":"Leg Completed","Leg":%v9%,"duration":%v8%}
+  Publish homie/%sysname%/Sprinklers/JSONstats,{"where":"timer2","what":"Completed","Leg":%v9%,"duration":%v8%}
   event,nextLeg
 endon

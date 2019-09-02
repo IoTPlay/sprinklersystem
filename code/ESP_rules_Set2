@@ -3,8 +3,16 @@ On nextLeg do
         Let,9,2 
         event,DoNextLeg
     endif
+    if [VAR#9]=1 and [varSet3#doL2]=0 and [varSet3#doL3]=1 
+        Let,9,3 
+        event,DoNextLeg
+    endif
     if [VAR#9]=2 and [varSet3#doL3]=1
-        Let,9,3
+       Let,9,3
+        event,doNextLeg
+    endif
+    if [VAR#9]=2 and [varSet3#doL3]=0 and [varSet3#doL4]=1
+        Let,9,4
         event,doNextLeg
     endif
     if [VAR#9]=3 and [varSet3#doL4]=1

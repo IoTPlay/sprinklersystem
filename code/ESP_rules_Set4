@@ -5,6 +5,7 @@ on allsprinkleroff do
   gpio,4,1    // R3 ~ off
   gpio,5,0    // R4 ~ off
   gpio,2,1    // R5 ~ off
+  TaskValueSet,1,1,0 // isAuto = off
 endon
 // --
 
