@@ -9,14 +9,12 @@ endon
 On durRest_s do
     TaskValueSet,1,3,%eventvalue%  
 endon
-
 //--------
 On startHr1 do
     TaskValueSet,2,1,%eventvalue%  
 endon
 On startMin1 do
     TaskValueSet,2,2,%eventvalue%  
-    Let,7,%eventvalue%
 endon
 On startHr2 do
     TaskValueSet,2,3,%eventvalue%  
@@ -51,35 +49,9 @@ On doL4 do
     TaskValueSet,3,4,%eventvalue%
 endon
 
-//-- Monitor gpio's to 16 variables
-on GPIO#14 do  //R1
-    Let,11,%eventvalue%
-endon
-// -- inversed --
-on GPIO#0=1 do  //R2
-    Let,12,0
-endon
-on GPIO#0=0 do  //R2
-    Let,12,1
-endon
-//---
-on GPIO#4 do  //R3
-  Let,13,%eventvalue%
-endon
-on GPIO#5 do  //R4
-  Let,14,%eventvalue%
-endon
-// -- inversed --
-on GPIO#2=1 do  //R5
-        Let,15,0
-endon
-on GPIO#2=0 do  //R5
-        Let,15,1
-endon
 
 //--------
 On doTest do
-  Publish testing/%sysname%/variables,{isAuto:[varSet1#isAuto],durOnManual_min:[varSet1#isAuto],durRest_s:[varSet1#durRest_s],startHr1:[varSet2#startHr1],startMin1:[varSet2#startMin1]}
-  // Publish testing/%sysname%/relays,{"R1":%v11%,"R2":%v12%,"R3":%v13%,"R4":%v14%,"R5":%v15%}
+  Publish testing/%sysname%/variables,{"isAuto":[varSet1#isAuto],"durOnManual_min":[varSet1#isAuto],"durRest_s":[varSet1#durRest_s],"startHr1":[varSet2#startHr1],"startMin1":[varSet2#startMin1]}
 endon
 //--------

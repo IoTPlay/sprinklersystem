@@ -11,13 +11,4 @@ On nextLeg do
         Let,9,4
         event,doNextLeg
     endif
-    if [VAR#9]=4
-        TaskValueSet,1,4,1 //scheduleUsed
-    endif
-    if [varSet3#doL3]=1 and [varSet3#doL4]=0
-        TaskValueSet,1,4,1 //scheduleUsed
-    endif
-    if [varSet3#doL2]=1 and [varSet3#doL3]=0 and [varSet3#doL4]=0
-        TaskValueSet,1,4,1 //scheduleUsed
-    endif
 endon

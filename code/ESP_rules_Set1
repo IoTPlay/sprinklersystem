@@ -8,7 +8,7 @@ on System#Boot do
   timerSet,1,45
 endon
 
-  //--start leg
+  //--start leg stored in [VAR#9] 
 On Rules#Timer=1 do 
   // Publish testing/%sysname%/nextLegStart,{"doL1":[varSet3#doL1],"doL2":[varSet3#doL2],"doL3":[varSet3#doL3],"doL4":[varSet3#doL4]}
   if [varSet3#doL1]=1
@@ -20,17 +20,24 @@ On Rules#Timer=1 do
   if [varSet3#doL1]=0 and [varSet3#doL2]=0 and [varSet3#doL3]=1
     Let,9,3
   endif
-  Publish testing/%sysname%/Variables,{"where":"Timer1-end","var9":[VAR#9]}
+  Publish testing/%sysname%/Variables,{"where":"Timer1-end","what":"which leg starts","var9":[VAR#9]}
 endon
 
 // the 1st leg 
-On Clock#Time=All,"[varSet2#startHr1]:[varSet2#startMin1]" do
-  event,doNextLeg
-endon
+if [varSet2#startHr1] < 10
+  On Clock#Time=All,"0[varSet2#startHr1]:[varSet2#startMin1]" do 
+    event,doNextLeg
+  endon
+else
+  On Clock#Time=All,"[varSet2#startHr1]:[varSet2#startMin1]" do 
+    event,doNextLeg
+  endon
+endif
+
 
 On doNextLeg do
-  if [varSet1#isAuto]=1 and [varSet1#scheduleUsed]=0
-    Publish testing/%sysname%/Variables,{"where":,"doNextLeg-start","isAuto":[varSet1#isAuto],"var9":[VAR#9]}
+  if [varSet1#isAuto]=1 
+    Publish testing/%sysname%/Variables,{"where":"doNextLeg-start","isAuto":[varSet1#isAuto],"var9":[VAR#9]}
     if [VAR#9]=1 
       event,L1
       timerSet,2,[varSet4#durLeg1_s]
@@ -51,10 +58,7 @@ On doNextLeg do
       timerSet,5,[varSet4#durLeg3_s] 
       Let,8,[varSet4#durLeg4_s]  
     endif
-  endif //isAuto & scheduleUsed
-  if [varSet1#scheduleUsed]=1
-    Publish homie/%sysname%/Sprinklers/JSONstats,{"where":"doNextLeg-end","why":"scheduleUsed is 1","severity":3}
-  endif
+  endif //isAuto 
 endon
 
 On Rules#Timer=2 do 
