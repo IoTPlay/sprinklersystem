@@ -19,6 +19,7 @@
 |VAR#9 | leg start      | Dummy vars doL - which to start with? |
 |VAR#8 | leg duration s |  [varSet4#durLeg1_s]                  |
 
+
 ##### HowTo
 
 - setting a Dummy field with mqtt:    

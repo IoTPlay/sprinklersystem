@@ -3,8 +3,12 @@ on System#Boot do
   timerSet,1,30
 endon
 
-  //--start leg stored in [VAR#9] 
+//--start leg stored in [VAR#9] 
 On Rules#Timer=1 do 
+  event,checkLeg1
+endon
+
+On checkLeg1 do
   // Publish testing/%sysname%/nextLegStart,{"doL1":[varSet3#doL1],"doL2":[varSet3#doL2],"doL3":[varSet3#doL3],"doL4":[varSet3#doL4]}
   if [varSet3#doL1]=1
     Let,9,1
@@ -15,7 +19,7 @@ On Rules#Timer=1 do
   if [varSet3#doL1]=0 and [varSet3#doL2]=0 and [varSet3#doL3]=1
     Let,9,3
   endif
-  Publish testing/%sysname%/Variables,{"where":"Timer1-end","what":"which leg starts","var9":[VAR#9]}
+  Publish testing/%sysname%/Variables,{"where":"checkLeg1","what":"which leg starts","var9":[VAR#9]}
 endon
 
 // the 1st leg 
@@ -34,33 +38,31 @@ On doNextLeg do
     Publish testing/%sysname%/Variables,{"where":"doNextLeg-start","Leg":[VAR#9]}
     if [VAR#9]=1 
       event,L1
-      Let,8,[varSet4#durLeg1_s]  
-      timerSet,2,[varSet4#durLeg1_s]
-      Delay,[varSet4#durLeg1_s]x1000
+      Let,8,[varSet4#durLeg1_s]
+      Let,7,([varSet4#durLeg1_s]*1000)
+      Delay,[VAR#7]
+      event,sprinklers0andNext
     endif
     if [VAR#9]=2 
       event,L2
-      Let,8,[varSet4#durLeg2_s] 
-      timerSet,2,[varSet4#durLeg2_s]
-      Delay,[varSet4#durLeg2_s]x1000
+      Let,8,[varSet4#durLeg2_s]
+      Let,7,([varSet4#durLeg2_s]*1000)
+      Delay,[VAR#7]
+      event,sprinklers0andNext
     endif
     if [VAR#9]=3 
       event,L3
-      Let,8,[varSet4#durLeg3_s]  
-      timerSet,2,[varSet4#durLeg3_s]
-      Delay,[varSet4#durLeg3_s]x1000
-    endif
+      Let,8,[varSet4#durLeg3_s]
+      Let,7,([varSet4#durLeg3_s]*1000)
+      Delay,[VAR#7]
+      event,sprinklers0andNext
+     endif
     if [VAR#9]=4 
       event,L4
-      Let,8,[varSet4#durLeg4_s]  
-      timerSet,5,[varSet4#durLeg3_s] 
-      Delay,[varSet4#durLeg4_s]x1000
+      Let,8,[varSet4#durLeg4_s]
+      Let,7,([varSet4#durLeg4_s]*1000)
+      Delay,[VAR#7]
+      event,sprinklers0andNext
     endif
   endif //isAuto 
-endon
-
-On Rules#Timer=2 do 
-  event,allsprinkleroff
-  Publish homie/%sysname%/Sprinklers/JSONstats,{"where":"timer2","what":"Completed","Leg":%v9%,"duration":%v8%}
-  event,nextLeg
 endon

@@ -1,4 +1,14 @@
+On sprinklers0andNext do 
+  event,allsprinkleroff
+  Publish homie/%sysname%/Sprinklers/JSONstats,{"where":"sprinklers0andNext","what":"Completed","Leg":%v9%,"duration_s":%v8%}
+  //Publish testing/%sysname%/Variables,{"where":"sprinklers0andNext","delay for s":[varSet1#durRest_s]}
+  Delay,([varSet1#durRest_s]*1000)
+  event,nextLeg
+endon
+
+
 On nextLeg do
+    Publish testing/%sysname%/Variables,{"where":"nextLeg"}
     if [VAR#9]=1 and [varSet3#doL2]=1
         Let,9,2 
         event,DoNextLeg
