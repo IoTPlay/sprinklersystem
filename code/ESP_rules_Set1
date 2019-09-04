@@ -23,45 +23,41 @@ On checkLeg1 do
 endon
 
 // the 1st leg 
-if [varSet2#startHr1] < 10
+
   On Clock#Time=All,"0[varSet2#startHr1]:[varSet2#startMin1]" do 
     event,doNextLeg
   endon
-else
   On Clock#Time=All,"[varSet2#startHr1]:[varSet2#startMin1]" do 
     event,doNextLeg
   endon
-endif
+  On Clock#Time=All,"[varSet2#startHr1]:0[varSet2#startMin1]" do 
+    event,doNextLeg
+  endon
+  On Clock#Time=All,"0[varSet2#startHr1]:0[varSet2#startMin1]" do 
+    event,doNextLeg
+  endon
 
 On doNextLeg do
   if [varSet1#isAuto]=1 
     Publish testing/%sysname%/Variables,{"where":"doNextLeg-start","Leg":[VAR#9]}
     if [VAR#9]=1 
       event,L1
-      Let,8,[varSet4#durLeg1_s]
-      Let,7,([varSet4#durLeg1_s]*1000)
-      Delay,[VAR#7]
+      Delay,[varSet4#durLeg1_s]
       event,sprinklers0andNext
     endif
     if [VAR#9]=2 
       event,L2
-      Let,8,[varSet4#durLeg2_s]
-      Let,7,([varSet4#durLeg2_s]*1000)
-      Delay,[VAR#7]
+      Delay,[varSet4#durLeg2_s]
       event,sprinklers0andNext
     endif
     if [VAR#9]=3 
       event,L3
-      Let,8,[varSet4#durLeg3_s]
-      Let,7,([varSet4#durLeg3_s]*1000)
-      Delay,[VAR#7]
+      Delay,[varSet4#durLeg3_s]
       event,sprinklers0andNext
      endif
     if [VAR#9]=4 
       event,L4
-      Let,8,[varSet4#durLeg4_s]
-      Let,7,([varSet4#durLeg4_s]*1000)
-      Delay,[VAR#7]
+      Delay,[varSet4#durLeg4_s]
       event,sprinklers0andNext
     endif
   endif //isAuto 
